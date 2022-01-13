@@ -7,4 +7,7 @@ Fumante - Diz se uma pessoa é fumante ou não.
 
 # Objetivo: 
  - Desenvolver um modelo capaz de prever ser uma pessoas é fumante ou não de acordo com variáveis fornecidas, visto que após analisar os dados, pessoas fumantes tendem a gerar mais custos ao plano de saúde.
+
+# Link do webapp desenvilvido:
+https://previsaoplanofumante.herokuapp.com/
  
