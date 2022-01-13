@@ -1,2 +1,2 @@
-web: sh setup.sh && streamlit run credit_score.py
+web: sh setup.sh && streamlit run plano.py
 
