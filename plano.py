@@ -1,52 +1,59 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 import pickle
+from page1 import page1
+from page2 import page2
 
 
 
-st.set_page_config(page_title = 'Previsão Plano de Saúde', 
-				   layout = 'wide', 
-				   initial_sidebar_state = 'auto')
+
+
+# st.set_page_config(page_title = 'Previsão Plano de Saúde', 
+# 				   # layout = 'wide', 
+# 				   initial_sidebar_state = 'auto')
 
 st.title('Previsão Plano de Saúde')
 
 
-paginas=['Home','Objetivo','Simulação']
+paginas=['HOME','EDA','SIMULAÇÃO']
 pagina=st.sidebar.selectbox('Selecione a opção que deseja navegar',paginas)
 
 # page1
-if pagina=='Home':
-	# imagem = 'img3.jpg'
-	st.markdown('# **Seja bem vindo** ao previsao plano saude app')
-	# st.image(imagem,use_column_width='always')
+if pagina=='HOME':
+
+	st.markdown('# **Seja bem vindo** ao app')
+	st.markdown('''Baseado em um dataset que trás registros de um plano de saúde, o objetvo desse webap é prever quando uma pessoa é fumante ou não.
+		''')
+	st.markdown('## **DISTRIBUIÇÃO DOS DADOS**')
+	page1()
 
 # page2
-if pagina=='RESUMO':
-	# insight='insight.jpg'
-	st.write(' Este web app foi desenvolvido baseado em um dataset do que traz operações bancárias com montante entre 4 mil e 35 mil Euros, e tem como objetivo reduzir o índice de inadimplência, que inicialmente era de 21% , chegando a ficar em torno de 6%, como pode ser observado no gráfico abaixo. ')
-	# st.image(insight)
+if pagina=='EDA':
+	
+	page2()
 
 # page3	 
-if pagina=='Simulação':
+if pagina=='SIMULAÇÃO':
 	
 	st.markdown('## **Preencha os dados de acordo com os dados do cliente**')
 	
 
 	st.markdown('---')
 	st.markdown(' ')
-
-	# sidebar
 	
 
 	# colunas 
-	col1, col2 = st.columns(2)
-	col1.markdown('## Dados do cliente')
-	x1 = col1.number_input('Idade')
-	x2 = col1.selectbox('Sexo', ['Masculino','Feminino'])
-	x3 = col1.number_input('IMC')
-	x4 = col1.number_input('Filhos')
-	x5 = col1.radio('Regiao', ['southwest','southeast', 'northwest','northeast'])
-	x6 = col1.number_input('Custos')
+	
+	st.markdown('## Dados do cliente')
+	x1 = st.number_input('Idade')
+	x2 = st.selectbox('Sexo', ['Masculino','Feminino'])
+	x3 = st.number_input('IMC')
+	x4 = st.number_input('Filhos')
+	x5 = st.radio('Regiao', ['southwest','southeast', 'northwest','northeast'])
+	x6 = st.number_input('Custos')
 
 	
 	# Criando um dataframe para entrada do modelo 
@@ -78,7 +85,7 @@ if pagina=='Simulação':
 
 	st.markdown('---')
 
-	st.markdown('### Simulação')
+	st.markdown('# Simulação')
 
 
 	modelo = open('best_model', 'rb')
@@ -89,7 +96,18 @@ if pagina=='Simulação':
 	if st.button('Executar a Simulação'):
 		pred = modelo.predict(dados)
 		if pred==1:
+			st.warning('''De acordo com os dados de entrada a previsão
+							 foi que a pessoa em questão é ''')
 			st.markdown('# **Fumante**')
+			st.error('''O modelo utilizado acerta em 90% das
+			 			   vezes quando prever como sendo fumante e
+			 			    consegue capturar até 95% dos exemplos de fumantes''')
 		else:
+			st.success('''De acordo com os dados de entrada a previsão
+							 foi que a pessoa em questão é ''')
 			st.markdown('# **Não Fumante**')
+			st.markdown('''O modelo utilizado acerta em 99% das
+			 			   vezes quando prever como não fumante  e
+			 			    consegue capturar até 97% dos exemplos de não fumantes''')
+			st.balloons()
 		
