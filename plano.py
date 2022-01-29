@@ -99,15 +99,15 @@ if pagina=='SIMULAÇÃO':
 			st.warning('''De acordo com os dados de entrada a previsão
 							 foi que a pessoa em questão é ''')
 			st.markdown('# **Fumante**')
-			st.error('''O modelo utilizado acerta em 90% das
+			st.error('''O modelo utilizado acerta em 88% das
 			 			   vezes quando prever como sendo fumante e
-			 			    consegue capturar até 95% dos exemplos de fumantes''')
+			 			   consegue capturar até 96% dos exemplos de fumantes''')
 		else:
 			st.success('''De acordo com os dados de entrada a previsão
 							 foi que a pessoa em questão é ''')
 			st.markdown('# **Não Fumante**')
 			st.markdown('''O modelo utilizado acerta em 99% das
 			 			   vezes quando prever como não fumante  e
-			 			    consegue capturar até 97% dos exemplos de não fumantes''')
+			 			    consegue capturar até 96% dos exemplos de não fumantes''')
 			st.balloons()
 		
